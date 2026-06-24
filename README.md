@@ -315,6 +315,6 @@ I Created, modified and deleted a test file in a monitored directory to check if
 - Sysmon — https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
 - SwiftOnSecurity Sysmon Config — https://github.com/SwiftOnSecurity/sysmon-config
 
-##Author
+## Author
 
 - Krishna Mali [Aspiring SOC Analyst]
