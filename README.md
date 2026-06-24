@@ -79,7 +79,7 @@ I used these credentials to log in to the Wazuh Dashboard and changed the passwo
 
 ## Wazuh Agent Setup on Windows VM
 
-### Step 1 — Downloaded Wazuh Agent
+### Step 1 - Downloaded Wazuh Agent
 
 ```powershell
 Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.14.5-1.msi -OutFile wazuh-agent.msi
@@ -87,9 +87,9 @@ Invoke-WebRequest -Uri https://packages.wazuh.com/4.x/windows/wazuh-agent-4.14.5
 
 Then ran the MSI installer and entered the Ubuntu VM IP address as the Manager IP during setup.
 
-### Step 2 — Installed Sysmon for Better Visibility
+### Step 2 - Installed Sysmon for Better Visibility
 
-Sysmon is a Windows system monitoring tool that provides much more detailed logs than Windows alone — including process creation, network connections, and file changes. Without Sysmon the visibility into what is happening on the Windows machine is very limited.
+Sysmon is a Windows system monitoring tool that provides much more detailed logs than Windows alone i.e including process creation, network connections, and file changes. Without Sysmon the visibility into what is happening on the Windows machine is very limited.
 
 I downloaded the Sysmon zip file from the Microsoft Sysinternals website and used the SwiftOnSecurity config which is the most widely used Sysmon configuration in the security community.
 
@@ -97,7 +97,7 @@ I downloaded the Sysmon zip file from the Microsoft Sysinternals website and use
 .\Sysmon64.exe -accepteula -i sysmonconfig.xml
 ```
 
-### Step 3 — Started Wazuh Agent
+### Step 3 - Started Wazuh Agent
 
 Opened services.msc on Windows, found the Wazuh service and started it. After a minute the agent appeared as Active in the Wazuh Dashboard.
 
@@ -107,13 +107,13 @@ Opened services.msc on Windows, found the Wazuh service and started it. After a 
 
 ---
 
-## Use Case 1 — PowerShell Encoded Command Detection
+## Use Case 1 - PowerShell Encoded Command Detection
 
 ### Why I Chose This
 
 Attackers commonly use PowerShell's -EncodedCommand flag to hide malicious scripts from basic detection. This is a very common technique used in real world attacks and I wanted to learn how to detect it.
 
-### Step 1 — Enable Script Block Logging on Windows
+### Step 1 — Enabling Script Block Logging on Windows
 
 Enabled PowerShell Script Block Logging via Windows Registry to log all PowerShell activity under Event ID 4104:
 
@@ -122,7 +122,7 @@ Path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
 Value: EnableScriptBlockLogging = 1
 ```
 
-### Step 2 — Configure Agent to Collect PowerShell Logs
+### Step 2 — Configuring Agent to Collect PowerShell Logs
 
 Opened ossec.conf on Windows VM at:
 
@@ -141,7 +141,7 @@ Added this block to collect PowerShell event logs and forward them to the Wazuh 
 
 Restarted Wazuh service via services.msc.
 
-### Step 3 — Write Custom Detection Rule on Ubuntu
+### Step 3 - Writing Custom Detection Rule on Ubuntu
 
 Opened the custom rules file on Ubuntu:
 
@@ -175,7 +175,7 @@ Restarted Wazuh Manager:
 sudo systemctl restart wazuh-manager
 ```
 
-### Step 4 — Testing and Alert
+### Step 4 - Testing and Alert
 
 Ran a safe encoded PowerShell test command on the Windows VM. The alert fired in the Wazuh Security Events dashboard with rule ID 100010.
 
@@ -185,15 +185,15 @@ Ran a safe encoded PowerShell test command on the Windows VM. The alert fired in
 
 ---
 
-## Use Case 2 — File Integrity Monitoring (FIM)
+## Use Case 2 - File Integrity Monitoring (FIM)
 
 ### Why I Chose This
 
-Attackers often drop malware in specific Windows folders or modify system files to maintain persistence or redirect traffic. FIM detects these changes in real time.
+Attackers often drop malware in specific Windows folders to modify system files or to maintain persistence or redirect traffic. FIM detects these changes in real time.
 
-### Step 1 — Configure Monitored Directories on Windows
+### Step 1 — Configured Monitored Directories on Windows
 
-Added attacker-commonly-used directories inside the syscheck block in ossec.conf:
+Added the directories which attackers coomonly use inside the syscheck block in ossec.conf:
 
 ```xml
 <syscheck>
@@ -210,14 +210,14 @@ Added attacker-commonly-used directories inside the syscheck block in ossec.conf
 
 | Folder | Why Attackers Use It |
 |--------|---------------------|
-| C:\Windows\Temp | Common malware drop location |
-| C:\Windows\System32\drivers\etc | Hosts file — attackers modify for DNS hijacking |
-| Startup folder | Persistence — malware runs on every reboot |
+| C:\Windows\Temp | This is the common location to drop malware |
+| C:\Windows\System32\drivers\etc | Hosts file, the attackers modify it for DNS hijacking |
+| Startup folder | For Persistence i.e for eg malware runs on every reboot |
 | C:\Users\Public | Shared folder abuse |
 
 ![ossec.conf Syscheck Directories](screenshots/ossec_conf_syscheck_directory.png)
 
-### Step 2 — Write Custom FIM Rules on Ubuntu
+### Step 2 - Write Custom FIM Rules on Ubuntu
 
 Added FIM detection rules to local_rules.xml:
 
@@ -259,9 +259,9 @@ Restarted Wazuh Manager:
 sudo systemctl restart wazuh-manager
 ```
 
-### Step 3 — Testing and Alert
+### Step 3 - Testing and Alert
 
-Created, modified and deleted a test file in a monitored directory. All three events appeared as alerts in the Wazuh Threat Hunting section.
+I Created, modified and deleted a test file in a monitored directory to check if the detection rule is working or not and All three events appeared as alerts in the Wazuh Threat Hunting section.
 
 ![FIM Test Command](screenshots/FIM_Test_Command.png)
 
@@ -299,7 +299,7 @@ Created, modified and deleted a test file in a monitored directory. All three ev
 | Tool | Purpose |
 |------|---------|
 | VirtualBox | Virtualization platform |
-| Wazuh 4.14.5 | SIEM and XDR platform |
+| Wazuh 4.14.5 | SIEM platform |
 | Ubuntu | Wazuh Manager, Indexer and Dashboard |
 | Windows | Wazuh Agent |
 | Sysmon + SwiftOnSecurity Config | Enhanced Windows visibility |
