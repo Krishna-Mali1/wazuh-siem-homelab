@@ -103,7 +103,7 @@ Opened services.msc on Windows, found the Wazuh service and started it. After a 
 
 ![Windows Agent Connected](screenshots/Windows_agent_connected.png)
 
-![Agent Overview Vulnerabilities](screenshots/Agent_overview_Vulnerabilities.png)
+![Agent Overview Vulnerabilities](screenshots/Agent_overview_vulnerabilities.png)
 
 ---
 
@@ -167,7 +167,7 @@ Added this rule to detect encoded PowerShell commands:
 </group>
 ```
 
-![Custom PowerShell Rule](screenshots/Custom_powershell_rule.png)
+![Custom PowerShell Rule](screenshots/Custom_rule_Powershell.png)
 
 Restarted Wazuh Manager:
 
@@ -179,9 +179,9 @@ sudo systemctl restart wazuh-manager
 
 Ran a safe encoded PowerShell test command on the Windows VM. The alert fired in the Wazuh Security Events dashboard with rule ID 100010.
 
-![PowerShell Test Command](screenshots/Powershell_test_command.png)
+![PowerShell Test Command](screenshots/Powershell_Test_Command.png)
 
-![PowerShell Alert Dashboard](screenshots/Wazuh_powershell_alert_dashboard.png)
+![PowerShell Alert Dashboard](screenshots/Wazuh_Powershell_Alert_Dashboard.png)
 
 ---
 
@@ -215,7 +215,7 @@ Added attacker-commonly-used directories inside the syscheck block in ossec.conf
 | Startup folder | Persistence — malware runs on every reboot |
 | C:\Users\Public | Shared folder abuse |
 
-![ossec.conf Syscheck Directories](screenshots/ossec_conf_syscheck_directories.png)
+![ossec.conf Syscheck Directories](screenshots/ossec_conf_syscheck_directory.png)
 
 ### Step 2 — Write Custom FIM Rules on Ubuntu
 
@@ -251,7 +251,7 @@ Added FIM detection rules to local_rules.xml:
 </group>
 ```
 
-![Custom FIM Rule](screenshots/Custom_rule_FIM.png)
+![Custom FIM Rule](screenshots/Custom_Rule_FIM.png)
 
 Restarted Wazuh Manager:
 
@@ -263,9 +263,9 @@ sudo systemctl restart wazuh-manager
 
 Created, modified and deleted a test file in a monitored directory. All three events appeared as alerts in the Wazuh Threat Hunting section.
 
-![FIM Test Command](screenshots/FIM_test_command.png)
+![FIM Test Command](screenshots/FIM_Test_Command.png)
 
-![FIM Alert Dashboard](screenshots/Wazuh_FIM_alert_dashboard.png)
+![FIM Alert Dashboard](screenshots/Wazuh_FIM_Alert_Dashboard.png)
 
 ![Threat Hunting Events](screenshots/Threat_hunting_Events.png)
 
