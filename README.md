@@ -1,6 +1,6 @@
 # Wazuh SIEM Homelab Project
 
-## About This Project
+# About This Project
 
 I built this project to learn how SIEM tools work in a real environment. I have been learning cybersecurity and wanted to get hands-on experience with log monitoring, custom rule writing, and threat detection. I used Wazuh because it is open source and widely used in the industry.
 
