@@ -4,9 +4,8 @@
 
 I built this project to learn how SIEM tools work in a real environment. I have been learning cybersecurity and wanted to get hands-on experience with log monitoring, custom rule writing, and threat detection. I used Wazuh because it is open source and widely used in the industry.
 
-The idea was simple — set up Wazuh on a Ubuntu VM, connect a Windows VM as an agent, and then detect real attack techniques like PowerShell obfuscation and unauthorized file changes.
+The idea was simple i.e to set up Wazuh on a Ubuntu VM, connect a Windows VM as an agent, and then detect real attack techniques like PowerShell obfuscation and unauthorized file changes.
 
----
 
 ## Environment Setup
 
@@ -19,7 +18,6 @@ I used VirtualBox to create two virtual machines on the same host machine:
 
 Both VMs were connected to the same internal network in VirtualBox so they could communicate with each other.
 
----
 
 ## How Wazuh Components Work Together
 
@@ -36,14 +34,14 @@ The flow works like this:
 Windows VM (Agent)
         │
         │  Sends logs to Manager
-        ▼
+        
 Ubuntu VM (Wazuh Manager)
         │
         │  Applies rules, generates alerts
-        ▼
+        
 Wazuh Indexer stores data
         │
-        ▼
+
 Wazuh Dashboard displays alerts
 ```
 
