@@ -113,7 +113,7 @@ Opened services.msc on Windows, found the Wazuh service and started it. After a 
 
 Attackers commonly use PowerShell's -EncodedCommand flag to hide malicious scripts from basic detection. This is a very common technique used in real world attacks and I wanted to learn how to detect it.
 
-### Step 1 — Enabling Script Block Logging on Windows
+### Step 1 - Enabling Script Block Logging on Windows
 
 Enabled PowerShell Script Block Logging via Windows Registry to log all PowerShell activity under Event ID 4104:
 
@@ -122,7 +122,7 @@ Path: HKLM:\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging
 Value: EnableScriptBlockLogging = 1
 ```
 
-### Step 2 — Configuring Agent to Collect PowerShell Logs
+### Step 2 - Configuring Agent to Collect PowerShell Logs
 
 Opened ossec.conf on Windows VM at:
 
@@ -191,7 +191,7 @@ Ran a safe encoded PowerShell test command on the Windows VM. The alert fired in
 
 Attackers often drop malware in specific Windows folders to modify system files or to maintain persistence or redirect traffic. FIM detects these changes in real time.
 
-### Step 1 — Configured Monitored Directories on Windows
+### Step 1 - Configured Monitored Directories on Windows
 
 Added the directories which attackers coomonly use inside the syscheck block in ossec.conf:
 
@@ -314,3 +314,7 @@ I Created, modified and deleted a test file in a monitored directory to check if
 - MITRE ATT&CK Framework — https://attack.mitre.org
 - Sysmon — https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon
 - SwiftOnSecurity Sysmon Config — https://github.com/SwiftOnSecurity/sysmon-config
+
+##Author
+
+- Krishna Mali [Aspiring SOC Analyst]
