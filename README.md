@@ -193,7 +193,7 @@ When rule 100010 fires I would not immediately block or kill anything. First I w
 5. If the command looks malicious then I would isolate the machine and would escalate this incident
 6. If the command was genuine meaning it was run for some legit work then I would tune the rule to reduce false positives
 
-## Note: This is my own thought process based on what I have learned so far. This may not be the exact process followed in real SOC environment.
+**Note:** This is my own thought process based on what I have learned so far. This may not be the exact process followed in real SOC environment.
 ---
 
 ## Use Case 2 - File Integrity Monitoring (FIM)
@@ -291,7 +291,7 @@ I Created, modified and deleted a test file in a monitored directory to check if
 5. If confirmed malicious , I would isolate the machine and escalate the incident.
 6. If it is genuine then I would mark it as false positive and tune the rule to reduce false positives
 
-## Note: This is my own thought process based on what I have learned so far. This may not be the exact process followed in real SOC environment.
+ **Note:** This is my own thought process based on what I have learned so far. This may not be the exact process followed in real SOC environment.
 ---
 
 ## MITRE ATT&CK Coverage
