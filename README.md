@@ -187,7 +187,7 @@ Ran a safe encoded PowerShell test command on the Windows VM. The alert fired in
 When rule 100010 fires I would not immediately block or kill anything. First I would investigate i.e:
 
 1. I will look at the alert details in Wazuh to see exactly what command was run
-2. I will try to decode the command as -EncodedCommand use base64 encoding.
+2. I will try to decode the command as -EncodedCommand flags accept only base64, uniencoded strings.
 3. I will check which user account ran the command, at what time and would also check if this user is supposed to run this command. 
 4. I would also try to check which process spawned the PowerShell instance.
 5. If the command looks malicious then I would isolate the machine and would escalate this incident
@@ -316,6 +316,7 @@ I Created, modified and deleted a test file in a monitored directory to check if
 - How to write custom detection rules using Wazuh rule syntax and PCRE2 regex
 - How FIM works and why monitoring specific directories matters
 - How to map detections to the MITRE ATT&CK framework
+- How an alert is investigated
 
 ---
 
