@@ -183,6 +183,17 @@ Ran a safe encoded PowerShell test command on the Windows VM. The alert fired in
 
 ![PowerShell Alert Dashboard](screenshots/Wazuh_Powershell_Alert_Dashboard.png)
 
+## What I would do after this alert PowerShell Encoded Command Detection fires 
+When rule 100010 fires I would not immediately block or kill anything. First I would investigate i.e:
+
+1. I will look at the alert details in Wazuh to see exactly what command was run
+2. I will try to decode the command to understand what it actually does and what type of encoding format it is in.
+3. I will check which user account ran the command, at what time and would also check if this user is supposed to run this command. 
+4. I would also try to check which process spawned the PowerShell instance.
+5. If the command looks malicious then I would isolate the machine and would escalate this incident
+6. If the command was genuine meaning it was run for some legit work then I would tune the rule to reduce false positives
+
+# Note: This is my own thought process based on what I have learned so far. This may not be the exact process followed in real SOC environment.
 ---
 
 ## Use Case 2 - File Integrity Monitoring (FIM)
@@ -269,6 +280,18 @@ I Created, modified and deleted a test file in a monitored directory to check if
 
 ![Threat Hunting Events](screenshots/Threat_hunting_Events.png)
 
+## What I would do after the FIM(File Integrity Monitoring) alert is detected
+
+ Since the custom detection rule specifically monitors directories that attackers commonly use so When a file is created, modified or deleted in these folders so it seems to be already suspicious so if this alert is fired I would :
+
+1. Check which specific directory triggered the alert and what exactly happened i.e if the file was created, modified or deleted.
+2. Check which user made the change and at what time.
+3. Check if there are any other alerts from the same machine around the same time. 
+4. Check the file hash on platforms like VirusTotal.
+5. If confirmed malicious , I would isolate the machine and escalate the incident.
+6. If it is genuine then I would mark it as false positive and tune the rule to reduce false positives
+
+# Note: This is my own thought process based on what I have learned so far. This may not be the exact process followed in real SOC environment.
 ---
 
 ## MITRE ATT&CK Coverage
